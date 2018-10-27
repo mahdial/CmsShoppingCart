@@ -170,5 +170,47 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        // GET: Admin/Pages/Detail/id
+        [HttpGet]
+        public ActionResult DetailPage(int id)
+        {
+            PageVM model;
+            using (Db db = new Db())
+            {
+                PageDTO pdto = db.Pages.Find(id);
+
+                if (pdto == null)
+                {
+                    return Content("This page does not exist.");
+                }
+
+                model = new PageVM(pdto);
+
+            }
+            return View(model);
+        }
+
+        // Post: Admin/Pages/ReorderPages
+        [HttpPost]
+        public void ReorderPages(int[] id)
+        {
+            using (Db db = new Db())
+            {
+                int count = 1;
+                PageDTO pdto;
+
+                foreach (var PageID in id)
+                {
+                    pdto = db.Pages.Find(PageID);
+
+                    pdto.Sorting = count;
+
+                    db.SaveChanges();
+
+                    count++;
+                }
+            }
+        }
     }
 }

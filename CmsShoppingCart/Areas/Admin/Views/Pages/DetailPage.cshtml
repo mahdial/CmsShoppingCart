@@ -1,0 +1,50 @@
+﻿@model CmsShoppingCart.Models.ViewModels.Pages.PageVM
+
+@{
+    ViewBag.Title = "Detail Page";
+}
+
+<h2>Detail Page</h2>
+
+<div>
+    <h4>PageVM</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Title
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Slug
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Slug)
+        </dd>
+
+        <dt>
+            Body
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Body)
+        </dd>
+
+        <dt>
+            SideBar
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HasSidebar)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit Page", "EditPage", new { id = Model.id }) |
+    @Html.ActionLink("Back to Pages", "Index")
+</p>
