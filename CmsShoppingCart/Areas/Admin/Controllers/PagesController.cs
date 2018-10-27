@@ -20,7 +20,13 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                 pageList = db.Pages.ToArray().OrderBy(x => x.Sorting).Select(x => new PageVM(x)).ToList();
             }
 
-                return View(pageList);
+            return View(pageList);
+        }
+
+        // GET: Admin/Pages/AddPage
+        public ActionResult AddPage()
+        {
+            return View();
         }
     }
 }
