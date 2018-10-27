@@ -100,13 +100,10 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
 
             using (Db db = new Db())
             {
-                int id = model.id;
-
                 PageDTO pdto = new PageDTO();
                 pdto = db.Pages.Find(model.id);
 
                 string slug = model.Slug;
-                pdto.Title = model.Title;
 
                 if (model.Slug != "home")
                 {
@@ -116,15 +113,16 @@ namespace CmsShoppingCart.Areas.Admin.Controllers
                         slug = slug.Replace(" ", "-").ToLower();
                 }
 
-                if (db.Pages.Where(x => x.id != id).Any(x => x.Title.Equals(model.Title)) || db.Pages.Where(x => x.id != id).Any(x => x.Slug.Equals(slug)))
+                if (db.Pages.Where(x => x.id != model.id).Any(x => x.Title.Equals(model.Title)) || db.Pages.Where(x => x.id != model.id).Any(x => x.Slug.Equals(slug)))
                 {
-                    if (db.Pages.Where(x => x.id != id).Any(x => x.Slug.Equals(slug)))
+                    if (db.Pages.Where(x => x.id != model.id).Any(x => x.Slug.Equals(slug)))
                         ModelState.AddModelError("", "Thje Slug already exist. Please change the Slug");
-                    if (db.Pages.Where(x => x.id != id).Any(x => x.Title.Equals(model.Title)))
+                    if (db.Pages.Where(x => x.id != model.id).Any(x => x.Title.Equals(model.Title)))
                         ModelState.AddModelError("", "The Title already exist. Please change the Title");
                     return View(model);
                 }
 
+                pdto.Title = model.Title;
                 pdto.Slug = slug;
                 pdto.Body = model.Body;
                 pdto.HasSidebar = model.HasSidebar;
