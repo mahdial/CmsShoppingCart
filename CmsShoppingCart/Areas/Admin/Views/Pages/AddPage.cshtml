@@ -13,10 +13,10 @@
     </div>
 }
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -48,7 +48,7 @@
             @Html.LabelFor(model => model.HasSidebar, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.HasSidebar , new { htmlAttributes = new { @class = "ml-auto" } })
+                    @Html.EditorFor(model => model.HasSidebar, new { htmlAttributes = new { @class = "ml-auto" } })
                     @Html.ValidationMessageFor(model => model.HasSidebar, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -65,3 +65,11 @@
 <div>
     @Html.ActionLink("Back to Pages", "Index")
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace("Body");
+    </script>
+}

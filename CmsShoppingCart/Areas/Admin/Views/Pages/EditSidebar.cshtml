@@ -42,3 +42,11 @@
 <div>
     @Html.ActionLink("Back to Sidebar", "Index")
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+
+    <script>
+        CKEDITOR.replace("Body");
+    </script>
+}
